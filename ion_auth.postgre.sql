@@ -3,7 +3,7 @@ CREATE TABLE "users" (
     "group_id" int4 NOT NULL,
     "ip_address" char(16) NOT NULL,
     "username" varchar(15) NOT NULL,
-    "password" varchar(40) NOT NULL,
+    "password" varchar(128) NOT NULL,
     "salt" varchar(40),
     "email" varchar(100) NOT NULL,
     "activation_code" varchar(40),
