@@ -77,7 +77,7 @@ class Ion_auth_model extends CI_Model
 	    $this->meta_join       = $this->config->item('join', 'ion_auth');
 	    
 	    $this->hash_algorithm  = $this->config->item('hash_algorithm', 'ion_auth');
-	    $this->site_salt	   = $this->config->item('site_salt', 'ion_auth');
+	    $this->app_salt	   = $this->config->item('app_salt', 'ion_auth');
 	}
 
 	/**
@@ -106,12 +106,12 @@ class Ion_auth_model extends CI_Model
 
 	    if ($this->store_salt && $salt)
 		{
-			return  hash_hmac($this->hash_algorithm, $password . $salt, $this->site_salt);
+			return  hash_hmac($this->hash_algorithm, $password . $salt, $this->app_salt);
 		}
 		else
 		{
 	    	$salt = $this->salt();
-	    	return  $salt . substr(hash_hmac($this->hash_algorithm, $salt . $password, $this->site_salt), 0, -$this->salt_length);
+	    	return  $salt . substr(hash_hmac($this->hash_algorithm, $salt . $password, $this->app_salt), 0, -$this->salt_length);
 		}
 	}
 
@@ -145,13 +145,13 @@ class Ion_auth_model extends CI_Model
 
 		if ($this->store_salt)
 		{
-			return  hash_hmac($this->hash_algorithm, $password . $result->salt, $this->site_salt);
+			return  hash_hmac($this->hash_algorithm, $password . $result->salt, $this->app_salt);
 		}
 		else
 		{
 			$salt = substr($result->password, 0, $this->salt_length);
 
-			return $salt . substr(hash_hmac($this->hash_algorithm, $salt . $password, $this->site_salt), 0, -$this->salt_length);
+			return $salt . substr(hash_hmac($this->hash_algorithm, $salt . $password, $this->app_salt), 0, -$this->salt_length);
 		}
 	}
 
