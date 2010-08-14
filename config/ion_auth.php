@@ -65,12 +65,41 @@
 	/**
 	 * Minimum Required Length of Password
 	 **/
-	$config['min_password_length'] = 8;
+	$config['min_password_length'] = 6;
 	
 	/**
 	 * Maximum Allowed Length of Password
 	 **/
-	$config['max_password_length'] = 20;	
+	$config['max_password_length'] = 128;
+	
+	/**
+	 * This is the site wide salt which should be set
+	 * for added security.  It will require that a unique
+	 * rainbow table will need to be created as long as this
+	 * variable is not uncovered.
+	 *
+	 * I would suggest making this atleast 16 characters long
+	 *
+	 * WARNING: do not change this once you begin using the
+	 * library.
+	 *
+	 * @author tplaner
+	 **/
+	$config['app_salt'] = 'FsSFKqCpFuAhs4ysuFQMkn2DzyJX3cF2b65CA4Z6eCc8M9nCmXFyt9GkcSeX5TBF';
+	
+	/**
+	 * Hashing algorithm to use.
+	 *
+	 * You can run print_r(hash_algos());
+	 * to see a list of supported hash algorithms on your
+	 * server.
+	 *
+	 * WARNING: do not change this once you begin using the
+	 * library.
+	 *
+	 * @author tplaner
+	 **/
+	$config['hash_algorithm'] = 'sha512';
 
 	/**
 	 * Email Activation for registration
@@ -85,7 +114,7 @@
 	/**
 	 * How long to remember the user (seconds)
 	 **/
-	$config['user_expire']         = 86500;
+	$config['user_expire']         = 86400;
 	
 	/**
 	 * Extend the users cookies everytime they auto-login
@@ -127,7 +156,7 @@
 	 * default password, 'password', changes to 
 	 * fbaa5e216d163a02ae630ab1a43372635dd374c0 with default salt.
 	 **/
-	$config['store_salt'] = false;
+	$config['store_salt'] = true;
 	
 	/**
 	 * Message Start Delimiter
